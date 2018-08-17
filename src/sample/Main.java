@@ -8,20 +8,23 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    Button button;
+    private Stage window;
+    private Button button;
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Hello World");
+        window = primaryStage;
+        window.setTitle("Hello World");
 
         button = new Button("Click me");
+        button.setOnAction(event -> AlertBox.display("Warning", "This is alert, don't panic."));
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
 
         Scene scene = new Scene(layout, 300, 250);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        window.setScene(scene);
+        window.show();
     }
 
 
