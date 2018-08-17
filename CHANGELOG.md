@@ -1,6 +1,7 @@
 # 2018-08-17
 ```
-Show confirm box on button click and display returned value
+Show confirm box on button click and close if choosen yes
+Do the same thing with exit button in right corner
 ```
 
 # 2018-08-15

@@ -19,6 +19,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         window = primaryStage;
         window.setTitle("Hello World");
+        window.setOnCloseRequest(event -> {
+            event.consume();
+            closeProgram();
+        });
 
         button = new Button("Click me");
         button.setOnAction(event -> closeProgram());
@@ -32,7 +36,8 @@ public class Main extends Application {
     }
 
     private void closeProgram() {
-        System.out.println("Saved the game.");
-        window.close();
+        boolean answer = ConfirmBox.display("Exit application", "Are you sure you want to close application?");
+        if (answer)
+            window.close();
     }
 }
