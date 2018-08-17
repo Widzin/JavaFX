@@ -11,16 +11,17 @@ public class Main extends Application {
     private Stage window;
     private Button button;
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) {
         window = primaryStage;
         window.setTitle("Hello World");
 
         button = new Button("Click me");
-        button.setOnAction(event -> {
-            boolean answer = ConfirmBox.display("Confirm", "Are you sure you want to click me?");
-            System.out.println(answer);
-        });
+        button.setOnAction(event -> closeProgram());
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
@@ -30,8 +31,8 @@ public class Main extends Application {
         window.show();
     }
 
-
-    public static void main(String[] args) {
-        launch(args);
+    private void closeProgram() {
+        System.out.println("Saved the game.");
+        window.close();
     }
 }
