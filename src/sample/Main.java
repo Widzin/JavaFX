@@ -17,7 +17,10 @@ public class Main extends Application {
         window.setTitle("Hello World");
 
         button = new Button("Click me");
-        button.setOnAction(event -> AlertBox.display("Warning", "This is alert, don't panic."));
+        button.setOnAction(event -> {
+            boolean answer = ConfirmBox.display("Confirm", "Are you sure you want to click me?");
+            System.out.println(answer);
+        });
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);

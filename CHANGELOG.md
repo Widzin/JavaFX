@@ -1,6 +1,6 @@
 # 2018-08-17
 ```
-Show alert box on button click
+Show confirm box on button click and display returned value
 ```
 
 # 2018-08-15
