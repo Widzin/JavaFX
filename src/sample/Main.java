@@ -2,6 +2,7 @@ package sample;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.StackPane;
@@ -34,6 +35,11 @@ public class Main extends Application {
 
         treeView = new TreeView<>(marvel);
         treeView.setShowRoot(true);
+        treeView.getSelectionModel().selectedItemProperty()
+                .addListener((v, oldValue, newValue) -> {
+                    if (newValue != null)
+                        System.out.println(newValue.getValue());
+        });
 
         StackPane layout = new StackPane();
         layout.getChildren().add(treeView);
