@@ -10,10 +10,13 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     private Stage window;
     private Scene scene;
     private Button button;
-
 
     @Override
     public void start(Stage primaryStage) {
@@ -22,6 +25,7 @@ public class Main extends Application {
 
         TextField input = new TextField();
         button = new Button("Click me");
+        button.setOnAction(event -> isInt(input));
 
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20));
@@ -32,8 +36,14 @@ public class Main extends Application {
         window.show();
     }
 
-
-    public static void main(String[] args) {
-        launch(args);
+    private boolean isInt(TextField input) {
+        try {
+            Integer.parseInt(input.getText());
+            System.out.println("It is integer.");
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("It isn't integer.");
+            return false;
+        }
     }
 }
