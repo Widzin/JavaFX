@@ -25,7 +25,8 @@ public class Main extends Application {
         ChoiceBox<String> meets = new ChoiceBox<>();
         meets.getItems().addAll("Bacon", "Chicken", "Ham");
         meets.setValue("Bacon");
-        meets.setOnAction(event -> System.out.println(meets.getValue()));
+//        meets.setOnAction(event -> System.out.println(meets.getValue()));
+        meets.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> System.out.println(newValue));
 
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20));
