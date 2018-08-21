@@ -26,6 +26,7 @@ public class Main extends Application {
         button = new Button("Click me");
 
         comboBox = new ComboBox<>();
+        comboBox.setEditable(true);
         comboBox.getItems().addAll(
                 "Matrix",
                 "Shrek",
