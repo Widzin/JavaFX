@@ -33,6 +33,8 @@ public class Main extends Application {
                 "Zootopia"
         );
         comboBox.setPromptText("Choose a movie");
+        button.setOnAction(event -> printMovie());
+        comboBox.setOnAction(event -> printMovie());
 
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20));
@@ -41,5 +43,9 @@ public class Main extends Application {
         scene = new Scene(layout, 300, 250);
         window.setScene(scene);
         window.show();
+    }
+
+    private void printMovie() {
+        System.out.println(comboBox.getValue());
     }
 }
