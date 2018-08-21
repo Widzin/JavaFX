@@ -24,10 +24,11 @@ public class Main extends Application {
         window = primaryStage;
         window.setTitle("Hello World");
 
-        button = new Button("Order now");
-
         CheckBox chickenBox = new CheckBox("Chicken");
         CheckBox baconBox = new CheckBox("Bacon");
+
+        button = new Button("Order now");
+        button.setOnAction(event -> handleOptions(chickenBox, baconBox));
 
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20));
@@ -36,5 +37,19 @@ public class Main extends Application {
         scene = new Scene(layout, 300, 250);
         window.setScene(scene);
         window.show();
+    }
+
+    private void handleOptions(CheckBox chickenBox, CheckBox baconBox) {
+        String message = "User orders: \n";
+        message += checkBox(chickenBox);
+        message += checkBox(baconBox);
+        message += "---------------------";
+        System.out.println(message);
+    }
+
+    private String checkBox(CheckBox checkBox) {
+        if (checkBox.isSelected())
+            return checkBox.getText() + "\n";
+        return "";
     }
 }
