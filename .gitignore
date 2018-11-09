@@ -29,6 +29,7 @@ out/
 *.jar
 *.war
 *.ear
+*.idea/libraries/**
 
 */bin
 *bin
