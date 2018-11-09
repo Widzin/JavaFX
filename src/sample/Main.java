@@ -22,6 +22,7 @@ public class Main extends Application {
     private Scene scene;
 
     private TableView<Product> table;
+    private TextField nameInput, priceInput, quantityInput;
     private HBox hBox;
 
     public static void main(String[] args) {
@@ -76,9 +77,9 @@ public class Main extends Application {
     }
 
     private void setTextFields() {
-        TextField nameInput = prepapeTextField("Name", 180.0);
-        TextField priceInput = prepapeTextField("Price", null);
-        TextField quantityInput = prepapeTextField("Quantity", null);
+        nameInput = prepapeTextField("Name", 180.0);
+        priceInput = prepapeTextField("Price", null);
+        quantityInput = prepapeTextField("Quantity", null);
         hBox.getChildren().addAll(nameInput, priceInput, quantityInput);
     }
 
@@ -92,7 +93,29 @@ public class Main extends Application {
 
     private void setButtons() {
         Button addBtn = new Button("Add");
+        addBtn.setOnAction(e -> addBtnClicked());
         Button deleteBtn = new Button("Delete");
+        deleteBtn.setOnAction(e -> deleteBtnClicked());
         hBox.getChildren().addAll(addBtn, deleteBtn);
+    }
+
+    private void addBtnClicked() {
+        Product p;
+        try {
+            Double price = Double.parseDouble(priceInput.getText());
+            Integer quantity = Integer.parseInt(quantityInput.getText());
+            p = Product.builder()
+                    .name(nameInput.getText())
+                    .price(price)
+                    .quantity(quantity)
+                    .build();
+            table.getItems().add(p);
+        } catch (NumberFormatException e) {
+            System.out.println("You cannot add this product.");
+        }
+    }
+
+    private void deleteBtnClicked() {
+
     }
 }
