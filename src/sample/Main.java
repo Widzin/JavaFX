@@ -100,11 +100,10 @@ public class Main extends Application {
     }
 
     private void addBtnClicked() {
-        Product p;
         try {
             Double price = Double.parseDouble(priceInput.getText());
             Integer quantity = Integer.parseInt(quantityInput.getText());
-            p = Product.builder()
+            Product p = Product.builder()
                     .name(nameInput.getText())
                     .price(price)
                     .quantity(quantity)
@@ -116,6 +115,8 @@ public class Main extends Application {
     }
 
     private void deleteBtnClicked() {
-
+        ObservableList<Product> productsSelected = table.getSelectionModel().getSelectedItems();
+        ObservableList<Product> allProducts = table.getItems();
+        productsSelected.forEach(allProducts::remove);
     }
 }
