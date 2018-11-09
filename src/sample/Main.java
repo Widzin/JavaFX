@@ -3,19 +3,26 @@ package sample;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.apache.commons.lang.StringUtils;
 
 
 public class Main extends Application {
 
     private Stage window;
     private Scene scene;
+
     private TableView<Product> table;
+    private HBox hBox;
 
     public static void main(String[] args) {
         launch(args);
@@ -30,8 +37,15 @@ public class Main extends Application {
         setColumns();
         setProducts();
 
+        hBox = new HBox();
+        hBox.setPadding(new Insets(10));
+        hBox.setSpacing(10);
+
+        setTextFields();
+        setButtons();
+
         VBox layout = new VBox(10);
-        layout.getChildren().addAll(table);
+        layout.getChildren().addAll(table, hBox);
 
         scene = new Scene(layout);
         window.setScene(scene);
@@ -46,7 +60,7 @@ public class Main extends Application {
     }
 
     private <T> TableColumn prepareColumn(int minWidth, String name) {
-        TableColumn<Product, T> column = new TableColumn<>(name);
+        TableColumn<Product, T> column = new TableColumn<>(StringUtils.capitalize(name));
         column.setMinWidth(minWidth);
         column.setCellValueFactory(new PropertyValueFactory(name));
         return column;
@@ -59,5 +73,26 @@ public class Main extends Application {
         products.add(new Product("Bike", 9.99, 3));
         products.add(new Product("My brain", 44.99, 1));
         table.setItems(products);
+    }
+
+    private void setTextFields() {
+        TextField nameInput = prepapeTextField("Name", 180.0);
+        TextField priceInput = prepapeTextField("Price", null);
+        TextField quantityInput = prepapeTextField("Quantity", null);
+        hBox.getChildren().addAll(nameInput, priceInput, quantityInput);
+    }
+
+    private TextField prepapeTextField(String promptText, Double minWidth) {
+        TextField textField = new TextField();
+        textField.setPromptText(promptText);
+        if (minWidth != null)
+            textField.setMinWidth(minWidth);
+        return textField;
+    }
+
+    private void setButtons() {
+        Button addBtn = new Button("Add");
+        Button deleteBtn = new Button("Delete");
+        hBox.getChildren().addAll(addBtn, deleteBtn);
     }
 }
