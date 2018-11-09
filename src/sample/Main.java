@@ -38,20 +38,21 @@ public class Main extends Application {
         window.show();
     }
 
-    public void setColumns() {
-        TableColumn<Product, String> nameCol = new TableColumn<>("Name");
-        nameCol.setMinWidth(180);
-        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        TableColumn<Product, Double> priceCol = new TableColumn<>("Price");
-        priceCol.setMinWidth(100);
-        priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-        TableColumn<Product, Integer> quantityCol = new TableColumn<>("Quantity");
-        quantityCol.setMinWidth(100);
-        quantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+    private void setColumns() {
+        TableColumn<Product, String> nameCol = prepareColumn(180, "name");
+        TableColumn<Product, Double> priceCol = prepareColumn(100, "price");
+        TableColumn<Product, Integer> quantityCol = prepareColumn(100, "quantity");
         table.getColumns().addAll(nameCol, priceCol, quantityCol);
     }
 
-    public void setProducts() {
+    private <T> TableColumn prepareColumn(int minWidth, String name) {
+        TableColumn<Product, T> column = new TableColumn<>(name);
+        column.setMinWidth(minWidth);
+        column.setCellValueFactory(new PropertyValueFactory(name));
+        return column;
+    }
+
+    private void setProducts() {
         ObservableList<Product> products = FXCollections.observableArrayList();
         products.add(new Product("Laptop", 3999.99, 10));
         products.add(new Product("Stuff", 39.22, 6));
