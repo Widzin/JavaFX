@@ -11,6 +11,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     private Stage window;
 
     @Override
@@ -40,13 +44,10 @@ public class Main extends Application {
         GridPane.setConstraints(loginBtn, 1, 2);
 
         gridPane.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginBtn);
+
         Scene scene = new Scene(gridPane, 300, 250);
+        scene.getStylesheets().add("sample/style.css");
         window.setScene(scene);
         window.show();
-    }
-
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
