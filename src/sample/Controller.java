@@ -1,13 +1,14 @@
 package sample;
 
-import javafx.scene.control.Button;
+import javafx.fxml.Initializable;
 
-public class Controller {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    public Button btn;
+public class Controller implements Initializable {
 
-    public void clickBtn() {
-        System.out.println("The button has been clicked.");
-        btn.setText("Stop click me.");
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("Loading user data...");
     }
 }
