@@ -77,13 +77,13 @@ public class Main extends Application {
     }
 
     private void setTextFields() {
-        nameInput = prepapeTextField("Name", 180.0);
-        priceInput = prepapeTextField("Price", null);
-        quantityInput = prepapeTextField("Quantity", null);
+        nameInput = prepareTextField("Name", 180.0);
+        priceInput = prepareTextField("Price", null);
+        quantityInput = prepareTextField("Quantity", null);
         hBox.getChildren().addAll(nameInput, priceInput, quantityInput);
     }
 
-    private TextField prepapeTextField(String promptText, Double minWidth) {
+    private TextField prepareTextField(String promptText, Double minWidth) {
         TextField textField = new TextField();
         textField.setPromptText(promptText);
         if (minWidth != null)
