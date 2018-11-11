@@ -28,6 +28,7 @@ public class Main extends Application {
         gridPane.setHgap(10);
 
         Label nameLabel = new Label("Username: ");
+        nameLabel.setId("label-bold");
         GridPane.setConstraints(nameLabel, 0, 0);
 
         TextField nameInput = new TextField("Widzin");
@@ -43,9 +44,13 @@ public class Main extends Application {
         Button loginBtn = new Button("Log In");
         GridPane.setConstraints(loginBtn, 1, 2);
 
-        gridPane.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginBtn);
+        Button signUpBtn = new Button("Sign Up");
+        signUpBtn.getStyleClass().add("button-blue");
+        GridPane.setConstraints(signUpBtn, 1, 3);
 
-        Scene scene = new Scene(gridPane, 300, 250);
+        gridPane.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginBtn, signUpBtn);
+
+        Scene scene = new Scene(gridPane, 400, 250);
         scene.getStylesheets().add("sample/style.css");
         window.setScene(scene);
         window.show();
