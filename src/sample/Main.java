@@ -2,10 +2,7 @@ package sample;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -26,7 +23,7 @@ public class Main extends Application {
 
         layout = new BorderPane();
         MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().addAll(prepareFileMenu(), prepareEditMenu());
+        menuBar.getMenus().addAll(prepareFileMenu(), prepareEditMenu(), prepareHelpMenu());
         layout.setTop(menuBar);
 
         scene = new Scene(layout, 300, 250);
@@ -62,5 +59,24 @@ public class Main extends Application {
         editMenu.getItems().add(pasteItem);
 
         return editMenu;
+    }
+
+    private Menu prepareHelpMenu() {
+        Menu helpMenu = new Menu("Help");
+
+        CheckMenuItem showLines = new CheckMenuItem("Show line Numbers");
+        showLines.setOnAction(e -> {
+            if (showLines.isSelected())
+                System.out.println("Program will now display line numers");
+            else
+                System.out.println("Program won't now display line numbers");
+        });
+
+        CheckMenuItem autoSave = new CheckMenuItem("Enable autosave");
+        autoSave.setSelected(true);
+
+        helpMenu.getItems().addAll(showLines, autoSave);
+
+        return helpMenu;
     }
 }
