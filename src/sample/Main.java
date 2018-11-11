@@ -18,13 +18,20 @@ public class Main extends Application {
     private Scene scene;
     private Button button;
 
-
     @Override
     public void start(Stage primaryStage) {
         window = primaryStage;
         window.setTitle("Hello World");
 
+        Person widzin = new Person();
+        widzin.firstNameProperty().addListener((v, oldValue, newValue) -> {
+            System.out.println("Name changed to " + newValue);
+            System.out.println("firstNameProperty(): " + widzin.firstNameProperty());
+            System.out.println("getFirstName():  " + widzin.getFirstName());
+        });
+
         button = new Button("Click me");
+        button.setOnAction(e -> widzin.setFirstName("Artur"));
 
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20));
